@@ -1,7 +1,7 @@
 {
-  "name": "filePath",
+  "name": "file_path",
   "version": "0.0.1",
-  "homepage": "https://github.com/nathanfaucett/filePath",
+  "homepage": "https://github.com/nathanfaucett/file_path",
   "authors": [
     "lonewolfgames <nathanfaucett@gmail.com>"
   ],
@@ -10,8 +10,10 @@
   "keywords": [
     "path",
     "path.js",
+    "file_path",
+    "file_path.js",
     "filePath",
-    "filePath.js"
+    "file"
   ],
   "license": "MIT",
   "ignore": [
