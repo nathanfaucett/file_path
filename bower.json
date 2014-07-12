@@ -1,0 +1,24 @@
+{
+  "name": "filePath",
+  "version": "0.0.1",
+  "homepage": "https://github.com/nathanfaucett/filePath",
+  "authors": [
+    "lonewolfgames <nathanfaucett@gmail.com>"
+  ],
+  "description": "node.js file path utils for the browser and node.js",
+  "main": "src/index.js",
+  "keywords": [
+    "path",
+    "path.js",
+    "filePath",
+    "filePath.js"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

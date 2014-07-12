@@ -1,0 +1,24 @@
+{
+  "name": "filePath",
+  "version": "0.0.1",
+  "description": "node.js file path utils for the browser and node.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nathanfaucett/filePath.git"
+  },
+  "main": "src/index.js",
+  "keywords": [
+    "path",
+    "path.js",
+    "filePath",
+    "filePath.js"
+  ],
+  "author": "Nathan Faucett",
+  "license": "BSD-2-Clause",
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "grunt": "",
+    "grunt-jsbeautifier": ""
+  }
+}
+
