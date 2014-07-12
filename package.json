@@ -1,6 +1,6 @@
 {
   "name": "file_path",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "node.js file path utils for the browser and node.js",
   "repository": {
     "type": "git",
@@ -13,7 +13,9 @@
     "file_path",
     "file_path.js",
     "filePath",
-    "file"
+    "file",
+    "filepath",
+    "file-path"
   ],
   "author": "Nathan Faucett",
   "license": "BSD-2-Clause",
