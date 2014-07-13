@@ -1,11 +1,11 @@
 {
   "name": "file_path",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "homepage": "https://github.com/nathanfaucett/file_path",
   "authors": [
-    "lonewolfgames <nathanfaucett@gmail.com>"
+    "nathanfaucett <nathanfaucett@gmail.com>"
   ],
-  "description": "node.js file path utils for the browser and node.js",
+  "description": "file path utils for the browser and node.js",
   "main": "src/index.js",
   "keywords": [
     "path",
@@ -21,8 +21,6 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "bower_components",
-    "test",
-    "tests"
+    "bower_components"
   ]
 }

@@ -1,7 +1,7 @@
 {
   "name": "file_path",
-  "version": "0.0.2",
-  "description": "node.js file path utils for the browser and node.js",
+  "version": "0.0.1",
+  "description": "file path utils for the browser and node.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/nathanfaucett/file_path.git"
@@ -23,6 +23,10 @@
   "devDependencies": {
     "grunt": "",
     "grunt-jsbeautifier": ""
+  },
+  "dependencies": {
+    "path_utils": "git://github.com/nathanfaucett/path_utils",
+    "utils": "git://github.com/nathanfaucett/utils"
   }
 }
 

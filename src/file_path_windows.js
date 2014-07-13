@@ -1,5 +1,5 @@
-var util = require("../util"),
-    pathUtil = require("./path_util");
+var utils = require("utils"),
+    pathUtils = require("path_utils");
 
 
 var filePath = module.exports,
@@ -48,7 +48,7 @@ filePath.normalize = function(path) {
         device = device[0].toLowerCase() + device.substr(1);
     }
 
-    tail = pathUtil.normalizeArray(pathUtil.removeEmpties(tail.split(SPLIT_TAIL)), !isAbsolute).join("\\");
+    tail = pathUtils.normalizeArray(pathUtils.removeEmpties(tail.split(SPLIT_TAIL)), !isAbsolute).join("\\");
 
     if (!tail && !isAbsolute) {
         tail = ".";
@@ -83,7 +83,7 @@ filePath.resolve = function() {
             }
         }
 
-        if (!util.isString(path)) {
+        if (!utils.isString(path)) {
             throw new TypeError("Arguments to path.resolve must be strings");
         } else if (!path) {
             continue;
@@ -115,7 +115,7 @@ filePath.resolve = function() {
     if (isUnc) {
         resolvedDevice = normalizeUNCRoot(resolvedDevice);
     }
-    resolvedTail = pathUtil.normalizeArray(pathUtil.removeEmpties(resolvedTail.split(SPLIT_TAIL)), !resolvedAbsolute).join("\\");
+    resolvedTail = pathUtils.normalizeArray(pathUtils.removeEmpties(resolvedTail.split(SPLIT_TAIL)), !resolvedAbsolute).join("\\");
 
     return (resolvedDevice + (resolvedAbsolute ? "\\" : "") + resolvedTail) || ".";
 };
@@ -129,8 +129,8 @@ filePath.relative = function relative(from, to) {
 
         toParts = trim(to.split("\\")),
 
-        lowerFromParts = pathUtil.trim(lowerFrom.split("\\")),
-        lowerToParts = pathUtil.trim(lowerTo.split("\\")),
+        lowerFromParts = pathUtils.trim(lowerFrom.split("\\")),
+        lowerToParts = pathUtils.trim(lowerTo.split("\\")),
 
         length = Math.min(lowerFromParts.length, lowerToParts.length),
         samePartsLength = length,
@@ -164,7 +164,7 @@ filePath.join = function() {
         joined;
 
     while (i--) {
-        if (!util.isString(paths[i])) {
+        if (!utils.isString(paths[i])) {
             throw new TypeError("Arguments to join must be strings");
         }
     }

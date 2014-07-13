@@ -1,5 +1,5 @@
-var util = require("../util"),
-    pathUtil = require("../path_util")
+var utils = require("utils"),
+    pathUtils = require("path_utils")
 
 
 var filePath = module.exports;
@@ -33,7 +33,7 @@ filePath.normalize = function(str) {
     for (i = 0; i < segments.length; i++) {
         if (segments[i]) nonEmptySegments.push(segments[i]);
     }
-    str = pathUtil.normalizeArray(nonEmptySegments, !isAbs).join("/");
+    str = pathUtils.normalizeArray(nonEmptySegments, !isAbs).join("/");
 
     if (!str && !isAbs) str = ".";
     if (str && trailingSlash) str += "/";
@@ -49,7 +49,7 @@ filePath.resolve = function() {
     for (i = arguments.length - 1; i >= -1 && !resolvedAbsolute; i--) {
         str = (i >= 0) ? arguments[i] : cwd;
 
-        if (!util.isString(str)) {
+        if (!utils.isString(str)) {
             throw new TypeError("Arguments to path.resolve must be strings");
         } else if (!str) {
             continue;
@@ -59,7 +59,7 @@ filePath.resolve = function() {
         resolvedAbsolute = str.charAt(0) === "/";
     }
 
-    resolvedPath = pathUtil.normalizeArray(pathUtil.removeEmpties(resolvedPath.split("/")), !resolvedAbsolute).join("/");
+    resolvedPath = pathUtils.normalizeArray(pathUtils.removeEmpties(resolvedPath.split("/")), !resolvedAbsolute).join("/");
     return ((resolvedAbsolute ? "/" : "") + resolvedPath) || ".";
 };
 
@@ -67,8 +67,8 @@ filePath.relative = function(from, to) {
     from = resolve(from).substr(1);
     to = resolve(to).substr(1);
 
-    var fromParts = pathUtil.trim(from.split("/")),
-        toParts = pathUtil.trim(to.split("/")),
+    var fromParts = pathUtils.trim(from.split("/")),
+        toParts = pathUtils.trim(to.split("/")),
 
         length = Math.min(fromParts.length, toParts.length),
         samePartsLength = length,
@@ -96,7 +96,7 @@ filePath.join = function() {
     for (i = 0, il = arguments.length; i < il; i++) {
         segment = arguments[i];
 
-        if (!util.isString(segment)) {
+        if (!utils.isString(segment)) {
             throw new TypeError("Arguments to join must be strings");
         }
         if (segment) {
