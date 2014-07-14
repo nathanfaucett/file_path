@@ -56,7 +56,7 @@ filePath.resolve = function() {
         }
 
         resolvedPath = str + "/" + resolvedPath;
-        resolvedAbsolute = str.charAt(0) === "/";
+        resolvedAbsolute = str[0] === "/";
     }
 
     resolvedPath = pathUtils.normalizeArray(pathUtils.removeEmpties(resolvedPath.split("/")), !resolvedAbsolute).join("/");
