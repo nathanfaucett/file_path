@@ -64,8 +64,8 @@ filePath.resolve = function() {
 };
 
 filePath.relative = function(from, to) {
-    from = resolve(from).substr(1);
-    to = resolve(to).substr(1);
+    from = filePath.resolve(from).substr(1);
+    to = filePath.resolve(to).substr(1);
 
     var fromParts = pathUtils.trim(from.split("/")),
         toParts = pathUtils.trim(to.split("/")),
