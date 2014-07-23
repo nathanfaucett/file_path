@@ -116,6 +116,8 @@ filePath.dir = function(str) {
     return str ? str.substr(0, str.length - 1) : ".";
 };
 
+filePath.dirname = filePath.dir;
+
 filePath.base = function(str, ext) {
     str = str.substring(str.lastIndexOf("/") + 1);
 
@@ -126,7 +128,11 @@ filePath.base = function(str, ext) {
     return str || "";
 };
 
+filePath.basename = filePath.base;
+
 filePath.ext = function(str) {
     var index = str.lastIndexOf(".");
     return index > -1 ? str.substring(index) : "";
 };
+
+filePath.extname = filePath.ext;

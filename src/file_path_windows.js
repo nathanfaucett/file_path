@@ -32,7 +32,7 @@ Object.defineProperty(filePath, "delimiter", {
     value: ";"
 });
 
-filePath.isAbsolute = function isAbsolute(path) {
+filePath.isAbsolute = function(path) {
     return IS_ABSOLUTE.test(path);
 };
 
@@ -120,7 +120,7 @@ filePath.resolve = function() {
     return (resolvedDevice + (resolvedAbsolute ? "\\" : "") + resolvedTail) || ".";
 };
 
-filePath.relative = function relative(from, to) {
+filePath.relative = function(from, to) {
     from = filePath.resolve(from);
     to = filePath.resolve(to);
 
@@ -182,6 +182,8 @@ filePath.dir = function(path) {
     return path ? path.substr(0, path.length - 1) : ".";
 };
 
+filePath.dirname = filePath.dir;
+
 filePath.base = function(path, ext) {
     path = path.substring(path.lastIndexOf("\\") + 1);
 
@@ -192,10 +194,14 @@ filePath.base = function(path, ext) {
     return path || "";
 };
 
+filePath.basename = filePath.base;
+
 filePath.ext = function(path) {
     var index = path.lastIndexOf(".");
     return index > -1 ? path.substring(index) : "";
 };
+
+filePath.extname = filePath.ext;
 
 function normalizeUNCRoot(device) {
     return "\\\\" + device.replace(UNC_ROOT_START, "").replace(UNC_ROOT_GLOBAL, "\\");
