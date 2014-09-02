@@ -1,5 +1,4 @@
-var utils = require("utils"),
-    pathUtils = require("path_utils");
+var pathUtils = require("path_utils");
 
 
 var filePath = module.exports,
@@ -83,7 +82,7 @@ filePath.resolve = function() {
             }
         }
 
-        if (!utils.isString(path)) {
+        if (typeof(path) !== "string") {
             throw new TypeError("Arguments to path.resolve must be strings");
         } else if (!path) {
             continue;
@@ -164,7 +163,7 @@ filePath.join = function() {
         joined;
 
     while (i--) {
-        if (!utils.isString(paths[i])) {
+        if (typeof(paths[i]) !== "string") {
             throw new TypeError("Arguments to join must be strings");
         }
     }

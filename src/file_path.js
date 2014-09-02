@@ -1,5 +1,4 @@
-var utils = require("utils"),
-    pathUtils = require("path_utils")
+var pathUtils = require("path_utils")
 
 
 var filePath = module.exports;
@@ -49,7 +48,7 @@ filePath.resolve = function() {
     for (i = arguments.length - 1; i >= -1 && !resolvedAbsolute; i--) {
         str = (i >= 0) ? arguments[i] : process.cwd();
 
-        if (!utils.isString(str)) {
+        if (!typeof(str) !== "string") {
             throw new TypeError("Arguments to path.resolve must be strings");
         } else if (!str) {
             continue;
@@ -96,7 +95,7 @@ filePath.join = function() {
     for (i = 0, il = arguments.length; i < il; i++) {
         segment = arguments[i];
 
-        if (!utils.isString(segment)) {
+        if (typeof(segment) !== "string") {
             throw new TypeError("Arguments to join must be strings");
         }
         if (segment) {
