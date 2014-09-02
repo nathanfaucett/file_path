@@ -48,7 +48,7 @@ filePath.resolve = function() {
     for (i = arguments.length - 1; i >= -1 && !resolvedAbsolute; i--) {
         str = (i >= 0) ? arguments[i] : process.cwd();
 
-        if (!typeof(str) !== "string") {
+        if (typeof(str) !== "string") {
             throw new TypeError("Arguments to path.resolve must be strings");
         } else if (!str) {
             continue;
