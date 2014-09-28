@@ -143,7 +143,7 @@ filePath.relative = function(from, to) {
         }
     }
 
-    if (samePartsLength == 0) {
+    if (samePartsLength === 0) {
         return to;
     }
 

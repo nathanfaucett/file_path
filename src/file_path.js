@@ -1,4 +1,4 @@
-var pathUtils = require("path_utils")
+var pathUtils = require("path_utils");
 
 
 var filePath = module.exports;
