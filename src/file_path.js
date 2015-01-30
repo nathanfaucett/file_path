@@ -1,16 +1,17 @@
-var pathUtils = require("path_utils");
+var defineProperty = require("define_property"),
+    pathUtils = require("path_utils");
 
 
 var filePath = module.exports;
 
 
-Object.defineProperty(filePath, "separator", {
+defineProperty(filePath, "separator", {
     enumerable: false,
     configurable: false,
     writable: false,
     value: "/"
 });
-Object.defineProperty(filePath, "delimiter", {
+defineProperty(filePath, "delimiter", {
     enumerable: false,
     configurable: false,
     writable: false,

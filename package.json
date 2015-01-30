@@ -26,6 +26,7 @@
     "grunt-jsbeautifier": ""
   },
   "dependencies": {
+    "define_property": "nathanfaucett/define_property",
     "path_utils": "nathanfaucett/path_utils"
   }
 }
