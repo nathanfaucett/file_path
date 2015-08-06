@@ -1,17 +1,18 @@
-var defineProperty = require("define_property"),
+var isString = require("is_string"),
+    defineProperty = require("define_property"),
     pathUtils = require("path_utils");
 
 
-var filePath = module.exports;
+var posix = exports;
 
 
-defineProperty(filePath, "separator", {
+defineProperty(posix, "separator", {
     enumerable: false,
     configurable: false,
     writable: false,
     value: "/"
 });
-defineProperty(filePath, "delimiter", {
+defineProperty(posix, "delimiter", {
     enumerable: false,
     configurable: false,
     writable: false,
@@ -19,29 +20,39 @@ defineProperty(filePath, "delimiter", {
 });
 
 
-filePath.isAbsolute = function(path) {
+posix.isAbsolute = function(path) {
     return path[0] === "/";
 };
 
-filePath.normalize = function(str) {
-    var isAbs = filePath.isAbsolute(str),
+posix.normalize = function(str) {
+    var isAbs = posix.isAbsolute(str),
         trailingSlash = str[str.length - 1] === "/",
         segments = str.split("/"),
         nonEmptySegments = [],
-        i;
+        i = -1,
+        il = segments.length - 1,
+        segment;
 
-    for (i = 0; i < segments.length; i++) {
-        if (segments[i]) nonEmptySegments.push(segments[i]);
+    while (i++ < il) {
+        segment = segments[i];
+
+        if (segment) {
+            nonEmptySegments.push(segment);
+        }
     }
     str = pathUtils.normalizeArray(nonEmptySegments, !isAbs).join("/");
 
-    if (!str && !isAbs) str = ".";
-    if (str && trailingSlash) str += "/";
+    if (!str && !isAbs) {
+        str = ".";
+    }
+    if (str && trailingSlash) {
+        str += "/";
+    }
 
     return (isAbs ? "/" : "") + str;
 };
 
-filePath.resolve = function() {
+posix.resolve = function() {
     var resolvedPath = "",
         resolvedAbsolute = false,
         i, str;
@@ -49,7 +60,7 @@ filePath.resolve = function() {
     for (i = arguments.length - 1; i >= -1 && !resolvedAbsolute; i--) {
         str = (i >= 0) ? arguments[i] : process.cwd();
 
-        if (typeof(str) !== "string") {
+        if (!isString(str)) {
             throw new TypeError("Arguments to path.resolve must be strings");
         } else if (!str) {
             continue;
@@ -60,12 +71,13 @@ filePath.resolve = function() {
     }
 
     resolvedPath = pathUtils.normalizeArray(pathUtils.removeEmpties(resolvedPath.split("/")), !resolvedAbsolute).join("/");
+
     return ((resolvedAbsolute ? "/" : "") + resolvedPath) || ".";
 };
 
-filePath.relative = function(from, to) {
-    from = filePath.resolve(from).substr(1);
-    to = filePath.resolve(to).substr(1);
+posix.relative = function(from, to) {
+    from = posix.resolve(from).substr(1);
+    to = posix.resolve(to).substr(1);
 
     var fromParts = pathUtils.trim(from.split("/")),
         toParts = pathUtils.trim(to.split("/")),
@@ -82,13 +94,15 @@ filePath.relative = function(from, to) {
     }
 
     outputParts = [];
-    for (i = samePartsLength, il = fromParts.length; i < il; i++) outputParts.push("..");
+    for (i = samePartsLength, il = fromParts.length; i < il; i++) {
+        outputParts.push("..");
+    }
     outputParts = outputParts.concat(toParts.slice(samePartsLength));
 
     return outputParts.join("/");
 };
 
-filePath.join = function() {
+posix.join = function() {
     var str = "",
         segment,
         i, il;
@@ -96,7 +110,7 @@ filePath.join = function() {
     for (i = 0, il = arguments.length; i < il; i++) {
         segment = arguments[i];
 
-        if (typeof(segment) !== "string") {
+        if (!isString(segment)) {
             throw new TypeError("Arguments to join must be strings");
         }
         if (segment) {
@@ -108,17 +122,17 @@ filePath.join = function() {
         }
     }
 
-    return filePath.normalize(str);
+    return posix.normalize(str);
 };
 
-filePath.dir = function(str) {
+posix.dir = function(str) {
     str = str.substring(0, str.lastIndexOf("/") + 1);
     return str ? str.substr(0, str.length - 1) : ".";
 };
 
-filePath.dirname = filePath.dir;
+posix.dirname = posix.dir;
 
-filePath.base = function(str, ext) {
+posix.base = function(str, ext) {
     str = str.substring(str.lastIndexOf("/") + 1);
 
     if (ext && str.substr(-ext.length) === ext) {
@@ -128,11 +142,11 @@ filePath.base = function(str, ext) {
     return str || "";
 };
 
-filePath.basename = filePath.base;
+posix.basename = posix.base;
 
-filePath.ext = function(str) {
+posix.ext = function(str) {
     var index = str.lastIndexOf(".");
     return index > -1 ? str.substring(index) : "";
 };
 
-filePath.extname = filePath.ext;
+posix.extname = posix.ext;

@@ -1,8 +1,9 @@
-var defineProperty = require("define_property"),
+var isString = require("is_string"),
+    defineProperty = require("define_property"),
     pathUtils = require("path_utils");
 
 
-var filePath = module.exports,
+var win32 = exports,
 
     slice = Array.prototype.slice,
 
@@ -19,28 +20,28 @@ var filePath = module.exports,
     JOIN_REPLACER = /^[\\\/]{2,}/;
 
 
-defineProperty(filePath, "separator", {
+defineProperty(win32, "separator", {
     enumerable: false,
     configurable: false,
     writable: false,
     value: "\\"
 });
-defineProperty(filePath, "delimiter", {
+defineProperty(win32, "delimiter", {
     enumerable: false,
     configurable: false,
     writable: false,
     value: ";"
 });
 
-filePath.isAbsolute = function(path) {
+win32.isAbsolute = function(path) {
     return IS_ABSOLUTE.test(path);
 };
 
-filePath.normalize = function(path) {
+win32.normalize = function(path) {
     var result = SPLIT_DEVICE.exec(path),
         device = result[1] || "",
         isUnc = device && device.charAt(1) !== ":",
-        isAbsolute = filePath.isAbsolute(path),
+        isAbsolute = win32.isAbsolute(path),
         tail = result[3],
         trailingSlash = ENDING_SLASH.test(tail);
 
@@ -64,7 +65,7 @@ filePath.normalize = function(path) {
     return device + (isAbsolute ? "\\" : "") + tail;
 };
 
-filePath.resolve = function() {
+win32.resolve = function() {
     var resolvedDevice = "",
         resolvedTail = "",
         resolvedAbsolute = false,
@@ -83,7 +84,7 @@ filePath.resolve = function() {
             }
         }
 
-        if (typeof(path) !== "string") {
+        if (!isString(path)) {
             throw new TypeError("Arguments to path.resolve must be strings");
         } else if (!path) {
             continue;
@@ -92,7 +93,7 @@ filePath.resolve = function() {
         result = SPLIT_DEVICE.exec(path);
         device = result[1] || "";
         isUnc = device && device.charAt(1) !== ":";
-        isAbsolute = filePath.isAbsolute(path);
+        isAbsolute = win32.isAbsolute(path);
         tail = result[3];
 
         if (device && resolvedDevice && device.toLowerCase() !== resolvedDevice.toLowerCase()) {
@@ -120,9 +121,9 @@ filePath.resolve = function() {
     return (resolvedDevice + (resolvedAbsolute ? "\\" : "") + resolvedTail) || ".";
 };
 
-filePath.relative = function(from, to) {
-    from = filePath.resolve(from);
-    to = filePath.resolve(to);
+win32.relative = function(from, to) {
+    from = win32.resolve(from);
+    to = win32.resolve(to);
 
     var lowerFrom = from.toLowerCase(),
         lowerTo = to.toLowerCase(),
@@ -158,13 +159,13 @@ filePath.relative = function(from, to) {
     return outputParts.join("\\");
 };
 
-filePath.join = function() {
+win32.join = function() {
     var paths = slice.call(arguments),
         i = paths.length,
         joined;
 
     while (i--) {
-        if (typeof(paths[i]) !== "string") {
+        if (!isString(paths[i])) {
             throw new TypeError("Arguments to join must be strings");
         }
     }
@@ -174,17 +175,17 @@ filePath.join = function() {
         joined = joined.replace(JOIN_REPLACER, "\\");
     }
 
-    return filePath.normalize(joined);
+    return win32.normalize(joined);
 };
 
-filePath.dir = function(path) {
+win32.dir = function(path) {
     path = path.substring(0, path.lastIndexOf("\\") + 1);
     return path ? path.substr(0, path.length - 1) : ".";
 };
 
-filePath.dirname = filePath.dir;
+win32.dirname = win32.dir;
 
-filePath.base = function(path, ext) {
+win32.base = function(path, ext) {
     path = path.substring(path.lastIndexOf("\\") + 1);
 
     if (ext && path.substr(-ext.length) === ext) {
@@ -194,14 +195,14 @@ filePath.base = function(path, ext) {
     return path || "";
 };
 
-filePath.basename = filePath.base;
+win32.basename = win32.base;
 
-filePath.ext = function(path) {
+win32.ext = function(path) {
     var index = path.lastIndexOf(".");
     return index > -1 ? path.substring(index) : "";
 };
 
-filePath.extname = filePath.ext;
+win32.extname = win32.ext;
 
 function normalizeUNCRoot(device) {
     return "\\\\" + device.replace(UNC_ROOT_START, "").replace(UNC_ROOT_GLOBAL, "\\");

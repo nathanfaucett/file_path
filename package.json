@@ -7,6 +7,11 @@
     "url": "https://github.com/nathanfaucett/file_path.git"
   },
   "main": "src/index.js",
+  "scripts": {
+    "test": "npm run test-node",
+    "test-node": "node ./test | ./node_modules/.bin/tap-spec",
+    "test-node-raw": "node ./test"
+  },
   "keywords": [
     "path",
     "path.js",
@@ -23,11 +28,13 @@
   "devDependencies": {
     "grunt": "",
     "grunt-contrib-jshint": "^0.10.0",
-    "grunt-jsbeautifier": ""
+    "grunt-jsbeautifier": "",
+    "tap-spec": "^4.0.0",
+    "tape": "^4.0.0"
   },
   "dependencies": {
-    "define_property": "nathanfaucett/define_property",
-    "path_utils": "nathanfaucett/path_utils"
+    "define_property": "git://github.com/nathanfaucett/define_property.git",
+    "is_string": "git://github.com/nathanfaucett/is_string.git",
+    "path_utils": "git://github.com/nathanfaucett/path_utils.git"
   }
 }
-
