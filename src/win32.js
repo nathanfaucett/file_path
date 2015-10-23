@@ -128,7 +128,7 @@ win32.relative = function(from, to) {
     var lowerFrom = from.toLowerCase(),
         lowerTo = to.toLowerCase(),
 
-        toParts = trim(to.split("\\")),
+        toParts = pathUtils.trim(to.split("\\")),
 
         lowerFromParts = pathUtils.trim(lowerFrom.split("\\")),
         lowerToParts = pathUtils.trim(lowerTo.split("\\")),

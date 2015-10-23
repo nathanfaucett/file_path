@@ -10,7 +10,8 @@
   "scripts": {
     "test": "npm run test-node",
     "test-node": "node ./test | ./node_modules/.bin/tap-spec",
-    "test-node-raw": "node ./test"
+    "test-node-raw": "node ./test",
+    "test-browser-local": "zuul --local 8080 --ui tape -- ./test"
   },
   "keywords": [
     "path",
@@ -23,14 +24,15 @@
     "file-path"
   ],
   "author": "Nathan Faucett",
-  "license": "BSD-2-Clause",
+  "license": "MIT",
   "readmeFilename": "README.md",
   "devDependencies": {
     "grunt": "",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-jsbeautifier": "",
     "tap-spec": "^4.0.0",
-    "tape": "^4.0.0"
+    "tape": "^4.0.0",
+    "zuul": "^3.2.0"
   },
   "dependencies": {
     "define_property": "git://github.com/nathanfaucett/define_property.git",
