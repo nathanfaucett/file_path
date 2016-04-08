@@ -17,24 +17,45 @@ if (isWin32) {
 
 
 filePath.slash = function(path) {
-    if (rePosix.test(path) && isWin32) {
-        return slashFromTo(path, posix, win32, "c:\\");
-    } else if (reWin32.test(path) && !isWin32) {
-        return slashFromTo(path, win32, posix, "/");
+    if (isWin32) {
+        return filePath.win32(path);
     } else {
-        return filePath.normalize(path);
+        return filePath.posix(path);
     }
 };
 
-function slashFromTo(path, from, to, root) {
-    var parts = pathUtils.trim(from.normalize(path).split(from.separator));
+filePath.posix = function(path) {
+    var parts;
 
-    if (from.isAbsolute(path)) {
-        return to.join(root, parts.join(to.separator));
+    if (reWin32.test(path)) {
+        parts = pathUtils.trim(win32.normalize(path).split(win32.separator));
+
+        if (win32.isAbsolute(path)) {
+            parts.shift();
+            return "/" + parts.join(posix.separator);
+        } else {
+            return parts.join(posix.separator);
+        }
     } else {
-        return parts.join(to.separator);
+        return posix.normalize(path);
     }
-}
+};
+
+filePath.win32 = function(path) {
+    var parts;
+
+    if (rePosix.test(path)) {
+        parts = pathUtils.trim(posix.normalize(path).split(posix.separator));
+
+        if (posix.isAbsolute(path)) {
+            return "c:\\" + parts.join(win32.separator);
+        } else {
+            return parts.join(win32.separator);
+        }
+    } else {
+        return win32.normalize(path);
+    }
+};
 
 
 module.exports = filePath;
