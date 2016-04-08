@@ -39,7 +39,7 @@ win32.isAbsolute = function(path) {
 
 win32.root = function(path) {
     var match = path.match(IS_ABSOLUTE);
-    return match ? match[0] : "c:\\";
+    return match ? match[0] : ".";
 };
 
 win32.normalize = function(path) {

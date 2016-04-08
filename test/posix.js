@@ -10,8 +10,8 @@ tape("filePath.isAbsolute(path)",function(assert) {
 });
 
 tape("filePath.root(path)",function(assert) {
-    assert.equal(filePath.isAbsolute("../path"), "/");
-    assert.equal(filePath.isAbsolute("path"), "/");
+    assert.equal(filePath.isAbsolute("../path"), ".");
+    assert.equal(filePath.isAbsolute("path"), ".");
     assert.equal(filePath.isAbsolute("/path"), "/");
     assert.end();
 });
@@ -49,5 +49,13 @@ tape("filePath.basename(path)",function(assert) {
 
 tape("filePath.extname(path)",function(assert) {
     assert.equal(filePath.extname("/base/path/file.js"), ".js", "should return extname");
+    assert.end();
+});
+
+tape("filePath.slash(path)",function(assert) {
+    assert.equal(filePath.slash("path"), "path");
+    assert.equal(filePath.slash(".\\path\\to\\"), "path/to");
+    assert.equal(filePath.slash("c:\\path\\to\\"), "/path/to");
+    assert.equal(filePath.slash("/path/to"), "/path/to");
     assert.end();
 });

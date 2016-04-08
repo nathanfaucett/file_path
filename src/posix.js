@@ -24,8 +24,8 @@ posix.isAbsolute = function(path) {
     return path[0] === "/";
 };
 
-posix.root = function() {
-    return "/";
+posix.root = function(path) {
+    return path[0] === "/" ? "/" : ".";
 };
 
 posix.normalize = function(str) {
