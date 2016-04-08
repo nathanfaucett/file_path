@@ -37,6 +37,11 @@ win32.isAbsolute = function(path) {
     return IS_ABSOLUTE.test(path);
 };
 
+win32.root = function(path) {
+    var match = path.match(IS_ABSOLUTE);
+    return match ? match[0] : "c:\\";
+};
+
 win32.normalize = function(path) {
     var result = SPLIT_DEVICE.exec(path),
         device = result[1] || "",

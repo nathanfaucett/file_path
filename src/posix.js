@@ -24,6 +24,10 @@ posix.isAbsolute = function(path) {
     return path[0] === "/";
 };
 
+posix.root = function() {
+    return "/";
+};
+
 posix.normalize = function(str) {
     var isAbs = posix.isAbsolute(str),
         trailingSlash = str[str.length - 1] === "/",
