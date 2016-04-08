@@ -46,7 +46,7 @@ tape("filePath.extname(path)",function(assert) {
 
 tape("filePath.slash(path)",function(assert) {
     assert.equal(filePath.slash("path"), "path");
-    assert.equal(filePath.slash("./path/to/"), "path\\to");
+    assert.equal(filePath.slash("./path/to/"), ".\\path\\to");
     assert.equal(filePath.slash("/path/to/"), "c:\\path\\to");
     assert.equal(filePath.slash("c:\\path\\to"), "c:\\path\\to");
     assert.end();

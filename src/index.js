@@ -34,10 +34,10 @@ filePath.posix = function(path) {
             parts.shift();
             return "/" + parts.join(posix.separator);
         } else {
-            return parts.join(posix.separator);
+            return (path[0] === "." ? "./" : "") + parts.join(posix.separator);
         }
     } else {
-        return posix.normalize(path);
+        return path;
     }
 };
 
@@ -50,10 +50,10 @@ filePath.win32 = function(path) {
         if (posix.isAbsolute(path)) {
             return "c:\\" + parts.join(win32.separator);
         } else {
-            return parts.join(win32.separator);
+            return (path[0] === "." ? ".\\" : "") + parts.join(win32.separator);
         }
     } else {
-        return win32.normalize(path);
+        return path;
     }
 };
 
