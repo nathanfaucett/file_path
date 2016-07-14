@@ -1,6 +1,6 @@
 var tape = require("tape"),
     filePath = require("..");
-    
+
 
 tape("filePath.isAbsolute(path)",function(assert) {
     assert.equal(filePath.isAbsolute("../path"), false, "should not be absolute");
@@ -10,12 +10,12 @@ tape("filePath.isAbsolute(path)",function(assert) {
 });
 
 tape("filePath.root(path)",function(assert) {
-    assert.equal(filePath.isAbsolute("../path"), ".");
-    assert.equal(filePath.isAbsolute("path"), ".");
-    assert.equal(filePath.isAbsolute("/path"), "/");
+    assert.equal(filePath.root("../path"), ".");
+    assert.equal(filePath.root("path"), ".");
+    assert.equal(filePath.root("/path"), "/");
     assert.end();
 });
-    
+
 tape("filePath.normalize(path)",function(assert) {
     assert.equal(filePath.normalize("//base//path///to"), "/base/path/to", "should remove double slashes");
     assert.end();

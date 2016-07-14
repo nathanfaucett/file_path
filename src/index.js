@@ -1,4 +1,4 @@
-var pathUtils = require("path_utils"),
+var pathUtils = require("@nathanfaucett/path_utils"),
     posix = require("./posix"),
     win32 = require("./win32");
 
