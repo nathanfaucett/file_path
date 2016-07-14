@@ -1,5 +1,5 @@
 {
-  "name": "file_path",
+  "name": "@nathanfaucett/file_path",
   "version": "0.0.1",
   "description": "file path utils for the browser and node.js",
   "repository": {
@@ -11,7 +11,7 @@
     "test": "npm run test-node",
     "test-node": "node ./test | ./node_modules/.bin/tap-spec",
     "test-node-raw": "node ./test",
-    "test-browser-local": "zuul --local 8080 --ui tape -- ./test"
+    "test-browser-local": "zuul --local 9999 --ui tape -- ./test"
   },
   "keywords": [
     "path",
@@ -27,16 +27,16 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "devDependencies": {
-    "grunt": "",
-    "grunt-contrib-jshint": "^0.10.0",
+    "grunt": "^1.0.1",
+    "grunt-contrib-jshint": "^1.0.0",
     "grunt-jsbeautifier": "",
     "tap-spec": "^4.0.0",
     "tape": "^4.0.0",
     "zuul": "^3.2.0"
   },
   "dependencies": {
-    "define_property": "git://github.com/nathanfaucett/define_property.git",
-    "is_string": "git://github.com/nathanfaucett/is_string.git",
-    "path_utils": "git://github.com/nathanfaucett/path_utils.git"
+    "@nathanfaucett/define_property": "^0.0.1",
+    "@nathanfaucett/is_string": "^0.0.1",
+    "@nathanfaucett/path_utils": "^0.0.1"
   }
 }

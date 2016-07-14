@@ -1,6 +1,6 @@
-var isString = require("is_string"),
-    defineProperty = require("define_property"),
-    pathUtils = require("path_utils");
+var isString = require("@nathanfaucett/is_string"),
+    defineProperty = require("@nathanfaucett/define_property"),
+    pathUtils = require("@nathanfaucett/path_utils");
 
 
 var win32 = exports,

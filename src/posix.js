@@ -1,6 +1,6 @@
-var isString = require("is_string"),
-    defineProperty = require("define_property"),
-    pathUtils = require("path_utils");
+var isString = require("@nathanfaucett/is_string"),
+    defineProperty = require("@nathanfaucett/define_property"),
+    pathUtils = require("@nathanfaucett/path_utils");
 
 
 var posix = exports;
@@ -21,7 +21,7 @@ defineProperty(posix, "delimiter", {
 
 
 posix.isAbsolute = function(path) {
-    return path[0] === "/";
+    return path.charAt(0) === "/";
 };
 
 posix.normalize = function(str) {
