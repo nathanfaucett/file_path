@@ -32,9 +32,9 @@ filePath.posix = function(path) {
 
         if (win32.isAbsolute(path)) {
             parts.shift();
-            return "/" + parts.join(posix.separator);
+            return posix.separator + parts.join(posix.separator);
         } else {
-            return (path[0] === "." ? "./" : "") + parts.join(posix.separator);
+            return (path.charAt(0) === "." ? ("." + posix.separator) : "") + parts.join(posix.separator);
         }
     } else {
         return path;
@@ -48,9 +48,9 @@ filePath.win32 = function(path) {
         parts = pathUtils.trim(posix.normalize(path).split(posix.separator));
 
         if (posix.isAbsolute(path)) {
-            return "c:\\" + parts.join(win32.separator);
+            return "c:" + win32.separator + parts.join(win32.separator);
         } else {
-            return (path[0] === "." ? ".\\" : "") + parts.join(win32.separator);
+            return (path.charAt(0) === "." ? ("." + win32.separator) : "") + parts.join(win32.separator);
         }
     } else {
         return path;

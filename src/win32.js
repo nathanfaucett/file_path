@@ -51,7 +51,7 @@ win32.normalize = function(path) {
         trailingSlash = ENDING_SLASH.test(tail);
 
     if (device && device.charAt(1) === ":") {
-        device = device[0].toLowerCase() + device.substr(1);
+        device = device.charAt(0).toLowerCase() + device.substr(1);
     }
 
     tail = pathUtils.normalizeArray(pathUtils.removeEmpties(tail.split(SPLIT_TAIL)), !isAbsolute).join("\\");

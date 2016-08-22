@@ -1,6 +1,6 @@
 {
   "name": "@nathanfaucett/file_path",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "file path utils for the browser and node.js",
   "repository": {
     "type": "git",

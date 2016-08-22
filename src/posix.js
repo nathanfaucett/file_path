@@ -25,12 +25,12 @@ posix.isAbsolute = function(path) {
 };
 
 posix.root = function(path) {
-    return path[0] === "/" ? "/" : ".";
+    return path.charAt(0) === "/" ? "/" : ".";
 };
 
 posix.normalize = function(str) {
     var isAbs = posix.isAbsolute(str),
-        trailingSlash = str[str.length - 1] === "/",
+        trailingSlash = str.charAt(str.length - 1) === "/",
         segments = str.split("/"),
         nonEmptySegments = [],
         i = -1,
@@ -71,7 +71,7 @@ posix.resolve = function() {
         }
 
         resolvedPath = str + "/" + resolvedPath;
-        resolvedAbsolute = str[0] === "/";
+        resolvedAbsolute = str.charAt(0) === "/";
     }
 
     resolvedPath = pathUtils.normalizeArray(pathUtils.removeEmpties(resolvedPath.split("/")), !resolvedAbsolute).join("/");
