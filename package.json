@@ -1,6 +1,6 @@
 {
   "name": "@nathanfaucett/file_path",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "file path utils for the browser and node.js",
   "repository": {
     "type": "git",
@@ -35,7 +35,7 @@
     "zuul": "^3.2.0"
   },
   "dependencies": {
-    "@nathanfaucett/define_property": "^0.0.1",
+    "@nathanfaucett/define_property": "^0.0.3",
     "@nathanfaucett/is_string": "^0.0.1",
     "@nathanfaucett/path_utils": "^0.0.1"
   }
